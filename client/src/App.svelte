@@ -1,11 +1,11 @@
 <script>
-  import ImageGrid from './lib/ImageGrid.svelte';
+  import CATCHA from './lib/CATCHA.svelte';
   import Demo from './lib/Demo.svelte';
 </script>
 
 <main>
   <Demo>
-    <ImageGrid />
+    <CATCHA />
   </Demo>
 </main>
 

@@ -18,7 +18,7 @@
   .image-container {
     height: 140px;
     width: 140px;
-    border-radius: 12px;
+    border-radius: var(--border-radius);
     background: #11111109;
     background-position: center;
     background-size: cover;
