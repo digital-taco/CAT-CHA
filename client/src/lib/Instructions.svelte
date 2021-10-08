@@ -10,5 +10,3 @@
 >
   {instructions}
 </Banner>
-<!-- background-color: #2a2a72; -->
-<!-- background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%); -->
