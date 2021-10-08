@@ -5,6 +5,7 @@ const caas = require('./lib/caas')
 
 const { PORT = 3000 } = process.env
 const app = express()
+app.use(express.json()) 
 const router = express.Router()
 
 router.get('/health', (req, res) => res.json({ status: 'up', check_time: new Date().toISOString() }))
