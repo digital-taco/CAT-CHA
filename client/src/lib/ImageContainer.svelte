@@ -1,6 +1,6 @@
-<script>
-  export let image;
-  export const handleImageClick = (e) => {
+<script lang="ts">
+  export let image: string;
+  export const handleImageClick = () => {
     console.log('Image clicked - eventually this will do something COOL');
   };
 </script>
