@@ -8,12 +8,13 @@ Basically reCAPTCHA but with cats, because this is the internet and we can do wh
 GET /api/cats/validation-set
 ```
 
-returns
+Returns the following. (Prompts will get better as we get further into the project)
 
 ```json
 {
   "validationId":"1633704317463BUJAY3E3ZodK",
-  "assets":[
+  "prompt": "computer",
+  "assets": [
     {"id":"1633704317462A0BV3i6K","url":"https://cataas.com/cat/595f280f557291a9750ebfb7"},
     {"id":"1633704317463oVbrCEOK","url":"https://cataas.com/cat/595f2810557291a9750ebfce"},
     {"id":"16337043174634iOZePjZ","url":"https://cataas.com/cat/595f2809557291a9750ebf35"},
@@ -24,6 +25,75 @@ returns
     {"id":"1633704317463ro20TZnr","url":"https://cataas.com/cat/6010b5d147d128001b7bbb8c"},
     {"id":"16337043174634L7EPCuy","url":"https://cataas.com/cat/595f280f557291a9750ebfbb"}
   ]
+}
+```
+
+With that `validationId` you can check the user's answers by sending the id's of the images they selected.
+
+```
+POST /api/cats/validate/:validationId
+```
+
+Example:
+
+```
+POST /api/cats/validate/1633704317463BUJAY3E3ZodK
+BODY {
+  "answer": [
+    "1633704317462A0BV3i6K",
+    "1633704317463Lz9dFOmy",
+    "1633704317463OXMpskbC"
+  ]
+}
+```
+
+Which will return one of the following types of responses:
+
+#### Validation Success
+
+```json
+{
+  "status": "Success",
+  "message": "Correct!",
+}
+```
+
+#### Validation Failure
+
+```jsonc
+{
+  "status": "FAILED",
+  "message": "Incorrect, please try again.",
+  "retry": {
+    "validationId": "16337229564051Tih1TAwOgVO",
+    "assets": [
+      {
+        "id": "1633722956405vtKuGIm1",
+        "url": "https://cataas.com/cat/595f280f557291a9750ebfbe"
+      },
+      // ...
+    ]
+  }
+}
+```
+#### Validation Session Expired
+
+All sessions are single use and terminate immediately after checking the user's answer. We auto terminate sessions that take longer than 2 minutes to complete.
+
+```jsonc
+{
+  "status": "EXPIRED",
+  "message": "The session has expired, please try again.",
+  "retry": {
+    "validationId": "16337229564051Tih1TAwOgVO",
+    "assets": [
+      {
+        "id": "1633722956405vtKuGIm1",
+        "url": "https://cataas.com/cat/595f280f557291a9750ebfbe"
+      },
+      // ...
+    ]
+  }
 }
 ```
 
