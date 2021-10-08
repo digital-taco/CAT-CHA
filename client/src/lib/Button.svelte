@@ -1,6 +1,4 @@
 <script lang="ts">
-  import Banner from './Banner.svelte';
-
   type Emphasis = 'low' | 'high';
 
   export let emphasis: Emphasis = 'low';
