@@ -117,6 +117,4 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# client/dist
-# client/build
 client/.vscode/
