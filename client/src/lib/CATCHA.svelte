@@ -1,13 +1,13 @@
 <script>
   import ImageGrid from './ImageGrid.svelte';
   import Instructions from './Instructions.svelte';
-  import Skip from './Refresh.svelte';
+  import Actions from './Actions.svelte';
 </script>
 
 <div>
   <Instructions />
   <ImageGrid />
-  <Skip />
+  <Actions />
 </div>
 
 <style>
