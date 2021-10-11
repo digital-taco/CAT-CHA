@@ -1,19 +1,14 @@
 <script>
+  // @ts-nocheck
   import ImageContainer from './ImageContainer.svelte';
 
-  const tempCat = 'https://i.ytimg.com/vi/jH7e1fDcZnY/maxresdefault.jpg';
+  export let cats = [];
 </script>
 
 <div class="grid">
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
-  <ImageContainer image="{tempCat}" />
+  {#each cats as asset}
+    <ImageContainer image="{asset.url}" />
+  {/each}
 </div>
 
 <style>
