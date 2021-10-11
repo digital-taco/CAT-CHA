@@ -1,4 +1,7 @@
 <!-- Component for centering the demo of this whole circus -->
+<svelte:head>
+  <title>CAT-CHA Demo</title>
+</svelte:head>
 
 <div class="demo">
   <slot />
