@@ -8,12 +8,12 @@ Basically reCAPTCHA but with cats, because this is the internet and we can do wh
 GET /api/cats/validation-set
 ```
 
-Returns the following. (Prompts will get better as we get further into the project)
+Returns something of the following:
 
 ```json
 {
   "validationId":"1633704317463BUJAY3E3ZodK",
-  "prompt": "computer",
+  "prompt": "Select all the orange cats",
   "assets": [
     {"id":"1633704317462A0BV3i6K","url":"https://cataas.com/cat/595f280f557291a9750ebfb7"},
     {"id":"1633704317463oVbrCEOK","url":"https://cataas.com/cat/595f2810557291a9750ebfce"},
