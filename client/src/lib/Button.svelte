@@ -5,7 +5,7 @@
 </script>
 
 <!-- $$restProps is a svelte var for "any props that aren't declared above" -->
-<button class="button {emphasis}" {...$$restProps}><slot /></button>
+<button class="button {emphasis}" {...$$restProps} on:click><slot /></button>
 
 <style>
   .button {
@@ -24,9 +24,14 @@
     color: white;
   }
   .button.high:hover {
-    background: #2a2a72;
+    filter: brightness(1.1);
   }
   .button:active {
+    transform: scale(0.95);
     filter: brightness(1.2);
+  }
+  .button:disabled {
+    background: #eee;
+    color: #aaa;
   }
 </style>

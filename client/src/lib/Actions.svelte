@@ -1,12 +1,56 @@
 <script>
+  // @ts-nocheck
+
   import Banner from './Banner.svelte';
   import Button from './Button.svelte';
+  import { selectedImages, validationSet } from './stores';
+  import { getValidationSet, verifySelectedImages } from './service';
+
+  let attemptMessage;
+  let verifying = false;
+  let refreshing = false;
+
+  const handleRefresh = async () => {
+    refreshing = true;
+    await getValidationSet();
+    refreshing = false;
+    selectedImages.set({});
+    attemptMessage = undefined;
+  };
+
+  const handleVerify = async () => {
+    verifying = true;
+    const result = await verifySelectedImages(
+      $selectedImages,
+      $validationSet.validationId
+    );
+    verifying = false;
+
+    const { status, retry, message } = result;
+
+    attemptMessage = message;
+    if (status === 'SUCCESS') {
+      console.log('YES!');
+    } else if (status === 'FAILED' || status === 'EXPIRED') {
+      validationSet.set(retry);
+      selectedImages.set({});
+    }
+  };
 </script>
 
 <Banner>
+  <div slot="left-side">
+    {#if attemptMessage}
+      <div class="retry-text">{attemptMessage}</div>
+    {/if}
+  </div>
   <div slot="right-side" class="button-row">
-    <Button emphasis="low">Refresh</Button>
-    <Button emphasis="high">Verify</Button>
+    <Button emphasis="low" on:click="{handleRefresh}" disabled="{refreshing}">
+      {refreshing ? 'Refreshing...' : 'Refresh'}
+    </Button>
+    <Button emphasis="high" on:click="{handleVerify}" disabled="{verifying}">
+      {verifying ? 'Checking...' : 'Verify'}
+    </Button>
   </div>
 </Banner>
 
@@ -14,5 +58,11 @@
   .button-row {
     display: flex;
     gap: 8px;
+  }
+  .retry-text {
+    text-align: right;
+    margin-top: 12px;
+    font-size: 14px;
+    opacity: 0.7;
   }
 </style>

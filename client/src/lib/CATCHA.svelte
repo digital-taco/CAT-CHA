@@ -4,20 +4,18 @@
   import ImageGrid from './ImageGrid.svelte';
   import Instructions from './Instructions.svelte';
   import Actions from './Actions.svelte';
+  import { validationSet } from './stores';
+  import { getValidationSet } from './service';
 
-  async function getCatAssets() {
-    const { data } = await axios.get('/api/cats/validation-set');
-    return data;
-  }
-  let promise = getCatAssets();
+  getValidationSet();
 </script>
 
 <div>
-  {#await promise then data}
-    <Instructions>{data.prompt}</Instructions>
-    <ImageGrid cats="{data.assets}" />
+  {#if $validationSet?.validationId}
+    <Instructions instructions="{$validationSet.prompt}" />
+    <ImageGrid cats="{$validationSet.assets}" />
     <Actions />
-  {/await}
+  {/if}
 </div>
 
 <style>

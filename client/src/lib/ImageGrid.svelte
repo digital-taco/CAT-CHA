@@ -7,7 +7,7 @@
 
 <div class="grid">
   {#each cats as asset}
-    <ImageContainer image="{asset.url}" />
+    <ImageContainer asset="{asset}" />
   {/each}
 </div>
 
