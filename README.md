@@ -53,7 +53,7 @@ Which will return one of the following types of responses:
 
 ```json
 {
-  "status": "Success",
+  "status": "SUCCESS",
   "message": "Correct!",
 }
 ```
