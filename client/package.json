@@ -8,10 +8,11 @@
     "serve": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json"
   },
-  "devDependencies": {
+  "dependencies": {
     "@digital-taco/eslint-config": "^1.1.1",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.11",
     "@tsconfig/svelte": "^2.0.1",
+    "axios": "^0.22.0",
     "eslint-plugin-svelte3": "^3.2.1",
     "prettier": "^2.4.1",
     "prettier-plugin-svelte": "^2.4.0",
@@ -21,8 +22,5 @@
     "tslib": "^2.3.1",
     "typescript": "^4.4.3",
     "vite": "^2.6.4"
-  },
-  "dependencies": {
-    "axios": "^0.22.0"
   }
 }
