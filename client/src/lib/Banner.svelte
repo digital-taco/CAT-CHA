@@ -29,4 +29,13 @@
     display: flex;
     justify-content: space-between;
   }
+
+  @media (max-width: 600px) {
+    .banner {
+      padding: 8px 16px;
+    }
+    .top-row {
+      display: initial;
+    }
+  }
 </style>

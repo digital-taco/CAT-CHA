@@ -58,4 +58,11 @@
     backdrop-filter: brightness(0.7);
     transform: scale(0.965);
   }
+
+  @media (max-width: 600px) {
+    .image-container {
+      height: 92px;
+      width: 92px;
+    }
+  }
 </style>

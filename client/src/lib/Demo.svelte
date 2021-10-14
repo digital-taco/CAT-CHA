@@ -13,4 +13,10 @@
     justify-content: center;
     margin-top: 20vh;
   }
+
+  @media (max-width: 600px) {
+    .demo {
+      margin-top: 0;
+    }
+  }
 </style>

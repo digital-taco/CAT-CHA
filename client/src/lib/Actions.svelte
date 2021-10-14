@@ -48,7 +48,11 @@
     <Button emphasis="low" on:click="{handleRefresh}" disabled="{refreshing}">
       {refreshing ? 'Refreshing...' : 'Refresh'}
     </Button>
-    <Button emphasis="high" on:click="{handleVerify}" disabled="{verifying}">
+    <Button
+      emphasis="high"
+      on:click="{handleVerify}"
+      disabled="{verifying || Object.keys($selectedImages).length === 0}"
+    >
       {verifying ? 'Checking...' : 'Verify'}
     </Button>
   </div>
@@ -64,5 +68,14 @@
     margin-top: 12px;
     font-size: 14px;
     opacity: 0.7;
+  }
+
+  @media (max-width: 600px) {
+    .button-row {
+      justify-content: flex-end;
+    }
+    .retry-text {
+      margin-bottom: 20px;
+    }
   }
 </style>
