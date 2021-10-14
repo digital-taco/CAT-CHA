@@ -4,14 +4,18 @@
   import ImageGrid from './ImageGrid.svelte';
   import Instructions from './Instructions.svelte';
   import Actions from './Actions.svelte';
-  import { validationSet } from './stores';
+  import Confetti from './Confetti.svelte';
+  import { validationSet, attemptMessage } from './stores';
   import { getValidationSet } from './service';
 
   getValidationSet();
 </script>
 
-<div>
+<div style="position: relative;">
   {#if $validationSet?.validationId}
+    {#if $attemptMessage === 'Correct!'}
+      <Confetti />
+    {/if}
     <Instructions instructions="{$validationSet.prompt}" />
     <ImageGrid cats="{$validationSet.assets}" />
     <Actions />

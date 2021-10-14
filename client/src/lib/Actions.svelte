@@ -3,10 +3,9 @@
 
   import Banner from './Banner.svelte';
   import Button from './Button.svelte';
-  import { selectedImages, validationSet } from './stores';
+  import { selectedImages, validationSet, attemptMessage } from './stores';
   import { getValidationSet, verifySelectedImages } from './service';
 
-  let attemptMessage;
   let verifying = false;
   let refreshing = false;
 
@@ -15,7 +14,7 @@
     await getValidationSet();
     refreshing = false;
     selectedImages.set({});
-    attemptMessage = undefined;
+    $attemptMessage = undefined;
   };
 
   const handleVerify = async () => {
@@ -28,10 +27,8 @@
 
     const { status, retry, message } = result;
 
-    attemptMessage = message;
-    if (status === 'SUCCESS') {
-      console.log('YES!');
-    } else if (status === 'FAILED' || status === 'EXPIRED') {
+    $attemptMessage = message;
+    if (status === 'FAILED' || status === 'EXPIRED') {
       validationSet.set(retry);
       selectedImages.set({});
     }
@@ -40,8 +37,8 @@
 
 <Banner>
   <div slot="left-side">
-    {#if attemptMessage}
-      <div class="retry-text">{attemptMessage}</div>
+    {#if $attemptMessage}
+      <div class="retry-text">{$attemptMessage}</div>
     {/if}
   </div>
   <div slot="right-side" class="button-row">
