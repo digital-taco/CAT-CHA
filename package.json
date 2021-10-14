@@ -4,7 +4,7 @@
   "description": "Basically reCAPTCHA but with cats, because this is the internet and we can do whatever we want.",
   "main": "server.js",
   "scripts": {
-    "start": "(cd client && npm run build) && node server.js",
+    "start": "node server.js",
     "dev": "concurrently 'PORT=5001 nodemon server.js' '(cd client && npm start)'",
     "build": "cd client && npm install",
     "postinstall": "cd client && npm install",
