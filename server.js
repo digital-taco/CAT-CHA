@@ -37,4 +37,4 @@ app.get('*', (req, res) => {
   res.sendFile(resolve(__dirname, './client/dist', 'index.html'))
 })
 
-app.listen(PORT, (err) => err ? console.error(err) : console.log('Listening at PORT ' + PORT))
+app.listen(PORT, (err) => err ? console.error(err) : console.info('Listening at PORT ' + PORT))
